@@ -1,0 +1,9 @@
+
+streamlit
+pandas
+scikit-learn
+spacy
+transformers
+torch
+openpyxl
+regex
