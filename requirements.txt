@@ -3,8 +3,8 @@ streamlit
 pandas
 scikit-learn
 spacy
-transformers
-torch
+transformers==4.33.0
+torch==2.1.0
 openpyxl
 regex
 spacy[lookups]
