@@ -8,8 +8,18 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
+# Function to download spaCy model if it is not installed
+def load_spacy_model(model_name='en_core_web_lg'):
+    try:
+        nlp = spacy.load(model_name)
+    except OSError:
+        # Download the model if it is not installed
+        os.system(f'python -m spacy download {model_name}')
+        nlp = spacy.load(model_name)
+    return nlp
+
 # Load spaCy model for POS and NER
-nlp = spacy.load('en_core_web_lg')
+nlp = load_spacy_model()
 
 # Load GPT-2 model and tokenizer
 model_name = "gpt2"
@@ -193,8 +203,6 @@ def main():
         
             if st.button("Search"):
                 tasks = extracted_df[extracted_df['Category'] == category]
-                
-                
                 
                 if not tasks.empty:
                     st.write(f"**Tasks in Category: {category}**")
